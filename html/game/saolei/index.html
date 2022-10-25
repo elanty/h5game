@@ -31,9 +31,9 @@
 </head>
 <body   >
 <div id="gnav">
-    <audio id="audio" controls="controls" src="./peng.mp3" style="display: none">
+    <audio id="failureAudio" controls="controls" src="../../music/peng.mp3" style="display: none">
     </audio>
-    <audio id="successaudio" controls="controls" src="./success.mp3" style="display: none">
+    <audio id="successAudio" controls="controls" src="../../music/success.mp3" style="display: none">
     </audio>
     <input type="text" id="mine-total" />
     <input type="radio" name="level" id="level_1" onchange="select_lev(0)" checked="checked" />
@@ -329,11 +329,11 @@
         win = bomb ? false : mine_arr.every(xy => g_info[xy].mark == g_info[xy].open);
         setTimeout(() => {//延迟弹窗,确定:重玩
             if(win){
-                var audio = document.getElementById("successaudio");
+                var audio = document.getElementById("successAudio");
                 audio.currentTime = 0;
                 audio.play();
             }else{
-                var audio = document.getElementById("audio");
+                var audio = document.getElementById("failureAudio");
                 audio.currentTime = 0;
                 audio.play();
             }
