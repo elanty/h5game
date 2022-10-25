@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>小游戏</title>
+    <style>
+        body{
+            background: url("./img/bg.jpg") no-repeat center center fixed;
+            /*兼容浏览器版本*/
+            -webkit-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .refbutton{
+            height:30px;
+            width:30%;
+            background-color: #70f80f;
+            border:1px solid #ffd700;
+            margin-top:15px;
+            margin-bottom:15px;
+            margin-right:20px;
+            margin-left:20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center;top:80px">
+        <h1>欢迎使用</h1>
+        <button class="refbutton" onclick='location.href=("./game/saolei")'>扫雷</button>
+        <button class="refbutton">象棋</button>
+        <br/>
+        <button class="refbutton" onclick='location.href=("./game/wuziqi")'>五子棋</button>
+        <button class="refbutton">蜘蛛纸牌</button>
+
+        <br/>
+        <button class="refbutton" onclick='location.href=("./test/1")'>1</button>
+        <button class="refbutton" onclick='location.href=("./test/2")'>2</button>
+        <br/>
+        <button class="refbutton" onclick='location.href=("./test/3")'>3</button>
+        <button class="refbutton" onclick='location.href=("./test/4")'>4</button>
+    </div>
+</body>
+
+</html>
