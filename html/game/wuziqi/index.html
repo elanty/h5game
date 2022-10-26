@@ -25,6 +25,10 @@
     <audio id="failureAudio" controls="controls" src="../../music/failure.mp3" style="display: none"></audio>
     <audio id="successAudio" controls="controls" src="../../music/success.mp3" style="display: none"></audio>
     <canvas id="chess" width="450px" height="450px"></canvas>
+    <input type="radio" id="player" name="first" value="player" onclick="setRadioValue(this.value)" checked><label
+        for="player">玩家先落子</label>
+    <input type="radio" id="computer" name="first" value="computer" onclick="setRadioValue(this.value)"><label
+        for="computer">电脑先落子</label>
     <input type="button" id="restart" onclick="restart()" value="重新开始"/>
 </div>
 
@@ -46,10 +50,16 @@
     let count = 0 //count表示赢法数组个数
     var lastI;
     var lastJ;
+    var first = true;
+    var firstPlayer = 'player';
 
+    var setRadioValue = function (value) {
+        firstPlayer = value;
+    }
     var restart = function () {
         lastI = null;
         lastJ = null;
+        first = true;
         chessBoard = []
         over = false
 
@@ -133,6 +143,12 @@
             context.lineTo(435, 15 + i * 30)
             context.stroke()
         }
+        if (firstPlayer === 'computer') {
+            me = false;
+            computerAI();
+        } else {
+            me = true;
+        }
     }
     var me = true
     var chess = document.getElementById('chess')
@@ -153,12 +169,12 @@
             context.fillStyle = gradient
             context.fill()
         } else {
-            context.fillStyle="#d1d1d1";//设置填充颜色
+            context.fillStyle = "#d1d1d1";//设置填充颜色
             context.fill();
             context.beginPath()
             context.arc(15 + i * 30, 15 + j * 30, 5, 0, 2 * Math.PI)
             context.closePath()
-            context.fillStyle="#f30707";//设置填充颜色
+            context.fillStyle = "#f30707";//设置填充颜色
             context.fill();
         }
         if (!me) {
@@ -237,61 +253,68 @@
             }
         }
 
-        //计算机每次落子时，最多遍历15*15*527（约13万）次，逐次递减，重新计算当前棋局双方的得分情况：每个空白位置上会有572种赢法，假设每种赢法下双方的得分情况
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 15; j++) {
-                if (chessBoard[i][j] == 0) { //遍历棋局的所有空白点，统计双方在这些位置点上的所有种赢法下的汇总分数，这一步是计算机落子的依据
-                    for (var k = 0; k < count; k++) {
-                        if (winMethods[i][j][k]) {
-                            if (humanChessCount[k] == 1) { //假设这个空白位置点（i,j）是人类第k种赢法下的第1颗子，则人类得分+200
-                                humanScore[i][j] += 200
-                            } else if (humanChessCount[k] == 2) { //假设这个空白位置点（i,j）是人类第k种赢法下的第2颗子，则人类得分+400
-                                humanScore[i][j] += 400
-                            } else if (humanChessCount[k] == 3) { //假设这个空白位置点（i,j）是人类第k种赢法下的第3颗子，则人类得分+2000
-                                humanScore[i][j] += 2000
-                            } else if (humanChessCount[k] == 4) { //假设这个空白位置点（i,j）是人类第k种赢法下的第4颗子，则人类得分+10000
-                                humanScore[i][j] += 10000
-                            }
+        if (first && firstPlayer === 'computer') {
+            //计算机每次落子时，最多遍历15*15*527（约13万）次，逐次递减，重新计算当前棋局双方的得分情况：每个空白位置上会有572种赢法，假设每种赢法下双方的得分情况
+            u = parseInt(Math.random() * 12 + 1);
+            v = parseInt(Math.random() * 12 + 1);
+            first = false;
+        } else {
+            for (var i = 0; i < 15; i++) {
+                for (var j = 0; j < 15; j++) {
+                    if (chessBoard[i][j] == 0) { //遍历棋局的所有空白点，统计双方在这些位置点上的所有种赢法下的汇总分数，这一步是计算机落子的依据
+                        for (var k = 0; k < count; k++) {
+                            if (winMethods[i][j][k]) {
+                                if (humanChessCount[k] == 1) { //假设这个空白位置点（i,j）是人类第k种赢法下的第1颗子，则人类得分+200
+                                    humanScore[i][j] += 200
+                                } else if (humanChessCount[k] == 2) { //假设这个空白位置点（i,j）是人类第k种赢法下的第2颗子，则人类得分+400
+                                    humanScore[i][j] += 400
+                                } else if (humanChessCount[k] == 3) { //假设这个空白位置点（i,j）是人类第k种赢法下的第3颗子，则人类得分+2000
+                                    humanScore[i][j] += 2000
+                                } else if (humanChessCount[k] == 4) { //假设这个空白位置点（i,j）是人类第k种赢法下的第4颗子，则人类得分+10000
+                                    humanScore[i][j] += 10000
+                                }
 
-                            if (computerChessCount[k] == 1) {
-                                computerScore[i][j] += 220
-                            } else if (computerChessCount[k] == 2) {
-                                computerScore[i][j] += 420
-                            } else if (computerChessCount[k] == 3) {
-                                computerScore[i][j] += 2100
-                            } else if (computerChessCount[k] == 4) {
-                                computerScore[i][j] += 20000
+                                if (computerChessCount[k] == 1) {
+                                    computerScore[i][j] += 220
+                                } else if (computerChessCount[k] == 2) {
+                                    computerScore[i][j] += 420
+                                } else if (computerChessCount[k] == 3) {
+                                    computerScore[i][j] += 2100
+                                } else if (computerChessCount[k] == 4) {
+                                    computerScore[i][j] += 20000
+                                }
                             }
                         }
-                    }
-                    console.log('空白坐标（' + i + ',' + j + ')' + '处，人类在所有赢法下的汇总分数：' + humanScore[i][j])
-                    console.log('空白坐标（' + i + ',' + j + ')' + '处，计算机在所有赢法下的汇总分数：' + humanScore[i][j])
+                        console.log('空白坐标（' + i + ',' + j + ')' + '处，人类在所有赢法下的汇总分数：' + humanScore[i][j])
+                        console.log('空白坐标（' + i + ',' + j + ')' + '处，计算机在所有赢法下的汇总分数：' + humanScore[i][j])
 
-                    //取对人类得分最小或者对计算机得分最大的位置进行落子
-                    if (humanScore[i][j] > max) {
-                        max = humanScore[i][j]
-                        u = i
-                        v = j
-                    } else if (humanScore[i][j] == max) {
-                        if (computerScore[i][j] > computerScore[u][v]) {
+                        //取对人类得分最小或者对计算机得分最大的位置进行落子
+                        if (humanScore[i][j] > max) {
+                            max = humanScore[i][j]
                             u = i
                             v = j
+                        } else if (humanScore[i][j] == max) {
+                            if (computerScore[i][j] > computerScore[u][v]) {
+                                u = i
+                                v = j
+                            }
                         }
-                    }
 
-                    if (computerScore[i][j] > max) {
-                        max = computerScore[i][j]
-                        u = i
-                        v = j
-                    } else if (computerScore[i][j] == max) {
-                        if (humanScore[i][j] > humanScore[u][v]) {
+                        if (computerScore[i][j] > max) {
+                            max = computerScore[i][j]
                             u = i
                             v = j
+                        } else if (computerScore[i][j] == max) {
+                            if (humanScore[i][j] > humanScore[u][v]) {
+                                u = i
+                                v = j
+                            }
                         }
                     }
                 }
             }
         }
+
 
         oneStep(u, v, false)
         chessBoard[u][v] = 2
