@@ -15,7 +15,7 @@
 <meta name="description" content="水果连连看，超好玩的消除类游戏">
 <title>水果连连看</title>
 
-<meta name="viewport" content="width=device-width,maximum-scale=1.0, initial-scale=1.0, user-scalable=no"><meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+<meta name="viewport" content="width=device-width,maximum-scale=1.0, initial-scale=1.0, user-scalable=no"><meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
 
 <script type="text/javascript" async src="js/ga.js"></script>
@@ -23,7 +23,7 @@
 <!--Google Analytics-->
 
 </head>
-<body style="margin:0px;padding:0px;-webkit-user-select: none;background: #000;" class="game-show">
+<body style="margin:0px;padding:0px;-webkit-user-select: none;background: #fff;" class="game-show">
 
 <div id="play68-root"><iframe id="play68-iframe" style="display: none; "></iframe></div>
 <script type="text/javascript" charset="UTF-8">
@@ -180,7 +180,7 @@
             __StateLib: {},
             __stateStack: [],
             Width: 640,
-            Height: 480,
+            Height: 600,
             MainCanvas: null,
             MainContext: null,
             Name: "",
@@ -1131,7 +1131,7 @@
             name: "game_in_BG",
             zOrder: 1,
             fileURL: "game_in_BG.png",
-            x: 0,
+            x: 25,
             y: 0,
             w: 321,
             h: 479,
@@ -1161,20 +1161,20 @@
             name: "LOADING_BG",
             zOrder: 2,
             fileURL: "MAIN.png",
-            x: 0,
+            x: 25,
             y: 0,
-            w: 318,
-            h: 426,
+            w: 400,
+            h: 600,
             tags: ["Loading"],
             cols: 1
         }, {
             name: "MAIN_MENU_BG",
             zOrder: 1,
             fileURL: "MAIN.png",
-            x: 0,
+            x: 25,
             y: 0,
-            w: 318,
-            h: 527,
+            w: 400,
+            h: 600,
             tags: ["MainMenu"],
             cols: 1
         }, {
@@ -1183,8 +1183,8 @@
             fileURL: "majong_BG.png",
             x: 0,
             y: 0,
-            w: 320,
-            h: 480,
+            w: 400,
+            h: 600,
             tags: ["Loading"],
             cols: 1
         }, {
@@ -1193,8 +1193,8 @@
             fileURL: "majong_BG.png",
             x: 0,
             y: 0,
-            w: 320,
-            h: 480,
+            w: 400,
+            h: 600,
             tags: ["GameIn"],
             cols: 1
         }, {
@@ -1203,8 +1203,8 @@
             fileURL: "majong_BG.png",
             x: 0,
             y: 0,
-            w: 320,
-            h: 480,
+            w: 400,
+            h: 600,
             tags: ["MainMenu"],
             cols: 1
         }, {
@@ -1921,7 +1921,7 @@
             name: "PAUSE_BG",
             zOrder: 3,
             fileURL: "PAUSE_BG.png",
-            x: 13,
+            x: 38,
             y: 78,
             w: 290,
             h: 354,
@@ -1933,8 +1933,8 @@
             fileURL: "splash.png",
             x: 0,
             y: 48,
-            w: 320,
-            h: 320,
+            w: 400,
+            h: 600,
             tags: ["Logo"],
             cols: 1
         }, {
@@ -2410,8 +2410,8 @@
     function () {
         FZ.GameDefs = {
             STATS_FONT_SIZE: 16,
-            SCREEN_W: 320,
-            SCREEN_H: 480,
+            SCREEN_W: 400,
+            SCREEN_H: 600,
             SCREEN_BOTTOM_H: 44,
             SCREEN_TOP_H: 20,
             TIME_RATE: 8,
@@ -2488,7 +2488,7 @@
             GRID_HEIGHT_HALF: 22,
             OFFSET_X: 16,
             OFFSET_Y: 80,
-            DREAMPET_OFFSET_X: -20,
+            DREAMPET_OFFSET_X: 0,
             DREAMPET_OFFSET_Y: 36,
             SEARCH_NONE: 0,
             SEARCH_INIT: 1,
@@ -2813,7 +2813,7 @@
                 var c = 0,
                     d = null,
                     e = null;
-                for (c = 0; c < a.length; c++) d = FZ.getImgInfo(a[c][0]), e = FZ.getImgInfo(a[c][1]), btn = new FZ.UIButton(d.w, d.h, d.cols, d.fileURL, e.fileURL), btn.setPos(d.x, d.y), btn.addMonitor(this), this.m_btn_list.push(btn), b && this.m_main_div.appendChild(btn.m_div)
+                for (c = 0; c < a.length; c++) d = FZ.getImgInfo(a[c][0]), e = FZ.getImgInfo(a[c][1]), btn = new FZ.UIButton(d.w, d.h, d.cols, d.fileURL, e.fileURL), btn.setPos(d.x + 25, d.y), btn.addMonitor(this), this.m_btn_list.push(btn), b && this.m_main_div.appendChild(btn.m_div)
             },
             resetTranslate: function (a) {
                 this.m_remove_div = !1, this.m_main_div.style.display = "inline", this.m_main_div.style.zIndex = 0, this.m_main_div.style.webkitTransitionDuration = "0s", this.m_main_div.style.opacity = a, this.m_main_div.style.webkitTransform = "translate(0px, 0px) rotate(0deg)"
@@ -3144,7 +3144,7 @@
         init: function () {
             this.m_hintX = 0, this.m_hintY = 0, this.m_hintScore = "", this.m_last_selected = -1, this.m_dialog = !1, this.m_leftNum = -1, this.m_allPets = this.m_allPets || [], this.m_missDiamonds = this.m_missDiamonds || [], this.m_hintCount = 0, this.m_firstPet = null, this.m_secondPet = null, this.m_PetFirstIndex = 0, this.m_PetSecondIndex = 0, this.m_drawLineTime = 0, this.m_left_pet = FZ.GameDefs.ALL_PET_NUM;
             for (var a = 0; a < 3; ++a) this.m_div_line[a] = document.createElement("div"), this.m_div_line[a].style.position = "absolute", this.m_div_line[a].style.backgroundRepeat = "no-repeat", this.m_div_line[a].style.backgroundColor = "#ffff00", this.m_div_line[a].style.visibility = "hidden", FZ.DivManager.addChild(this.m_div_line[a]);
-            this.isDebug && (this.m_debug_div = document.createElement("div"), this.m_debug_div.style.zIndex = 500, this.m_debug_div.style.width = "320px", this.m_debug_div.style.height = "40px", this.m_debug_div.style.left = "0px", this.m_debug_div.style.top = "438px", this.m_debug_div.style.position = "absolute", this.m_debug_div.style.color = "#ff0", this.m_debug_div.style.fontSize = FZ.GameDefs.STATS_FONT_SIZE + "px", this.m_debug_div.style.fontFamily = "Arial", this.m_debug_div.style.lineHeight = "40px", this.m_debug_div.style.textAlign = "center", this.m_debug_div.style.innerHTML = "", FZ.DivManager.addChild(this.m_debug_div))
+            this.isDebug && (this.m_debug_div = document.createElement("div"), this.m_debug_div.style.zIndex = 500, this.m_debug_div.style.width = "400px", this.m_debug_div.style.height = "40px", this.m_debug_div.style.left = "0px", this.m_debug_div.style.top = "438px", this.m_debug_div.style.position = "absolute", this.m_debug_div.style.color = "#ff0", this.m_debug_div.style.fontSize = FZ.GameDefs.STATS_FONT_SIZE + "px", this.m_debug_div.style.fontFamily = "Arial", this.m_debug_div.style.lineHeight = "40px", this.m_debug_div.style.textAlign = "center", this.m_debug_div.style.innerHTML = "", FZ.DivManager.addChild(this.m_debug_div))
         },
         removeEvent: function () {
             !this.m_parent || (FZ.TARGET_DEF.MOBILE === FZ.TargetPort ? (FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.T_START, this.m_call_tStart), this.m_call_tStart = null, FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.T_MOVE, this.m_call_tMove), this.m_call_tMove = null, FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.T_END, this.m_call_tEnd), this.m_call_tEnd = null) : (FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.M_OVER, this.m_call_mOver), this.m_call_mOver = null, FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.M_OUT, this.m_call_mOut), this.m_call_mOut = null, FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.M_MOVE, this.m_call_mMove), this.m_call_mMove = null, FZ.EventRemove(this, this.m_parent, FZ.EVENT_DEF.M_CLICK, this.m_call_mClick), this.m_call_mClick = null))
@@ -3983,7 +3983,7 @@
                 c = 0,
                 d = null;
             this.createUIs(this.CUR_UI_DEFS), d = FZ.getImgInfo(this.CUR_UI_DEFS[3]), this.m_bar_w = d.w, this.m_bar_div = this.m_ui_list[3], this.m_bar_div.style.overflow = "hidden", this.m_bar_div.style.display = "none";
-            for (c = 0; c < FZ.IphoneUI.length; c++) d = FZ.IphoneUI[c], FZ.spriteManager.addResource(d.name, d.zOrder, "res/images/" + d.fileURL, d.x, d.y, d.cols);
+            for (c = 0; c < FZ.IphoneUI.length; c++) d = FZ.IphoneUI[c], FZ.spriteManager.addResource(d.name, d.zOrder, "res/images/" + d.fileURL, d.x + 25, d.y, d.cols);
             FZ.ResourceManager.addResource({
                 Name: "BGMusic",
                 Type: "Audio",
@@ -4688,7 +4688,7 @@
                     for (e = 0; e < FZ.GameDefs.ALL_GENERAL; e++) i = {}, i.style = -1, i.state = FZ.GameDefs.DREAMPET_INIT, j.push(i);
                     FZ.GameBase.SaveObject.m_data = j, FZ.GameBase.saveGame()
                 }
-                d = FZ.$("mainDiv"), c = FZ.$("orientationDiv"), FZ.GameBase.animDiv = FZ.$("animDiv"), c.style.display = "none", /(iPhone|iPad|iPod|Android)/i.test(window.navigator.appVersion) && (FZ.TargetPort = FZ.TARGET_DEF.MOBILE, FZ.TargetMobile = FZ.TARGET_DEF.IPHONE, -1 !== navigator.userAgent.indexOf("iPad") ? FZ.TargetMobile = FZ.TARGET_DEF.IPAD : -1 !== navigator.userAgent.indexOf("Android") && (FZ.TargetMobile = FZ.TARGET_DEF.ANDRIOD)), a = document.createElement("meta"), b = document.getElementsByTagName("head"), FZ.TARGET_DEF.IPAD === FZ.TargetMobile ? (a.setAttribute("name", "viewport"), a.setAttribute("content", "width=320; initial-scale=2.0; maximum-scale=2.0; user-scalable=no;"), b[0].appendChild(a)) : (a.setAttribute("name", "viewport"), a.setAttribute("content", "width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"), b[0].appendChild(a)), window.scrollTo(0, 0), FZ.DivManager.init(), FZ.DivManager.setParent(d), FZ.DivManager.setSize(FZ.GameDefs.SCREEN_W, FZ.GameDefs.SCREEN_H), FZ.DivManager.setOffset(d.offsetLeft, d.offsetTop), FZ.GameBase.switchToState(FZ.StateDefs.GAME_STATE_PRELOADING), FZ.TARGET_DEF.MOBILE === FZ.TargetPort && (window.onscroll = g, window.addEventListener("orientationchange", f, !1)), document.addEventListener("touchstart", h, !1), f(), FZ.PrintLog("test log")
+                d = FZ.$("mainDiv"), c = FZ.$("orientationDiv"), FZ.GameBase.animDiv = FZ.$("animDiv"), c.style.display = "none", /(iPhone|iPad|iPod|Android)/i.test(window.navigator.appVersion) && (FZ.TargetPort = FZ.TARGET_DEF.MOBILE, FZ.TargetMobile = FZ.TARGET_DEF.IPHONE, -1 !== navigator.userAgent.indexOf("iPad") ? FZ.TargetMobile = FZ.TARGET_DEF.IPAD : -1 !== navigator.userAgent.indexOf("Android") && (FZ.TargetMobile = FZ.TARGET_DEF.ANDRIOD)), a = document.createElement("meta"), b = document.getElementsByTagName("head"), FZ.TARGET_DEF.IPAD === FZ.TargetMobile ? (a.setAttribute("name", "viewport"), a.setAttribute("content", "width=400; initial-scale=2.0; maximum-scale=2.0; user-scalable=no;"), b[0].appendChild(a)) : (a.setAttribute("name", "viewport"), a.setAttribute("content", "width=400; initial-scale=1.0; maximum-scale=1.0; user-scalable=no;"), b[0].appendChild(a)), window.scrollTo(0, 0), FZ.DivManager.init(), FZ.DivManager.setParent(d), FZ.DivManager.setSize(FZ.GameDefs.SCREEN_W, FZ.GameDefs.SCREEN_H), FZ.DivManager.setOffset(d.offsetLeft, d.offsetTop), FZ.GameBase.switchToState(FZ.StateDefs.GAME_STATE_PRELOADING), FZ.TARGET_DEF.MOBILE === FZ.TargetPort && (window.onscroll = g, window.addEventListener("orientationchange", f, !1)), document.addEventListener("touchstart", h, !1), f(), FZ.PrintLog("test log")
             };
         FZ.GameBase.ArrayIndexof = function (a, b) {
             var c = 0;
@@ -4956,15 +4956,15 @@
 })();
 </script>
 				 
-<div id="mainDiv" style="left: 50%; top: -20px; margin-left: -160px; z-index: 20; position: absolute; overflow: hidden; width: 320px; height: 480px; ">
+<div id="mainDiv" style="left: 40%; top: 0px; margin-left: -160px; z-index: 20; position: absolute; overflow: hidden; width: 400px; height: 600px; ">
 	<div style="display: inline; z-index: 0; -webkit-transition: 2000ms; opacity: 1; -webkit-transform: translate(0px, 0px) rotate(0deg); ">
-		<div style="width: 320px; height: 480px; left: 0px; top: 0px; position: absolute; background-image: url(res/images/majong_BG.png); background-repeat: no-repeat no-repeat; "></div>
-		<div style="width: 318px; height: 426px; left: 0px; top: 0px; position: absolute; background-image: url(res/images/MAIN.png); background-repeat: no-repeat no-repeat; "></div>
-		<div style="position: absolute; width: 149px; height: 63px; background-image: url(res/images/BTN_START.png); left: 93px; top: 264px; display: none; background-position: 0px 0px; background-repeat: no-repeat no-repeat; "></div>
-		<div style="position: absolute; width: 149px; height: 63px; background-image: url(res/images/BTN_CONTINUE.png); left: 95px; top: 330px; display: none; background-position: 0px 0px; background-repeat: no-repeat no-repeat; "></div>
+		<div style="width: 400px; height: 600px; left: 40px; top: 0px; position: absolute; background-image: url(res/images/majong_BG.png); background-repeat: no-repeat no-repeat; "></div>
+		<div style="width: 318px; height: 426px; left: 40px; top: 0px; position: absolute; background-image: url(res/images/MAIN.png); background-repeat: no-repeat no-repeat; "></div>
+		<div style="position: absolute; width: 149px; left: 40px; height: 63px; background-image: url(res/images/BTN_START.png); left: 93px; top: 264px; display: none; background-position: 0px 0px; background-repeat: no-repeat no-repeat; "></div>
+		<div style="position: absolute; width: 149px; left: 40px; height: 63px; background-image: url(res/images/BTN_CONTINUE.png); left: 95px; top: 330px; display: none; background-position: 0px 0px; background-repeat: no-repeat no-repeat; "></div>
 	</div>
 </div>
-<div id="orientationDiv" style="background-image: url(res/images/OrientationWarning.png); position: absolute; width: 480px; height: 320px; display: none; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "> </div>
+<div id="orientationDiv" style="background-image: url(res/images/OrientationWarning.png); position: absolute; width: 600px; height: 400px; display: none; background-position: 50% 50%; background-repeat: no-repeat no-repeat; "> </div>
 
 
 
