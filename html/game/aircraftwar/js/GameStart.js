@@ -191,10 +191,10 @@ GameStart.prototype = extend(Frame.prototype, {
                 this.ep_num++;
             }
             if (this.ep_intterval[1] > 400) {
-                this.ep_intterval[1] = this.ep_intterval[1] - 1;
+                this.ep_intterval[1] = this.ep_intterval[1] - 30;
             }
             if (this.ep_intterval[2] > 400) {
-                this.ep_intterval[2] = this.ep_intterval[2] - 1;
+                this.ep_intterval[2] = this.ep_intterval[2] - 30;
             }
 
         }
