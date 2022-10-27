@@ -87,7 +87,7 @@ input:focus,textarea:focus,select:focus{
 	background-repeat:no-repeat;
 	background-position:center center no-repeat;
 	background-size:cover;
-	margin:30px auto;
+	margin:0px auto;
 	position:relative;
 	background-color:#317c5d
 	}
@@ -144,4 +144,4 @@ input:focus,textarea:focus,select:focus{
 
 .gAlert .btn3:hover{background:#178394}
 
-.gAlert.out{top:-300px!important}
+.gAlert.out{display:none}
